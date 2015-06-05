@@ -8,5 +8,8 @@ ENV container docker
 RUN yum update -y
 RUN yum clean all
 
-EXPOSE 32400
+VOLUME /plex-library
+VOLUME /data
+
+EXPOSE 1900 32400 32410 32412 32469
 ENTRYPOINT ["/usr/sbin/start.sh"]
