@@ -17,5 +17,7 @@ if [ ! -f "${setup}" ]; then
   touch $setup
 fi
 
+mount --bind /data/plex /var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Media
+
 ## Start up Plex Media Server daemon via supervisord
 /usr/bin/supervisord -n -c /etc/supervisord.conf
