@@ -14,6 +14,8 @@ if [ ! -f "${setup}" ]; then
   cp /usr/share/zoneinfo/$TZ /etc/localtime
   yum install -y $PMS_RPM
   yum clean all
+  /usr/bin/test -d "${PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR}" || /bin/mkdir -p "${PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR}"
+  chown -R plex:plex /var/lib/plexmediaserver
   touch $setup
 fi
 
@@ -21,14 +23,6 @@ mount --bind /data/plex/media /var/lib/plexmediaserver/Library/Application Suppo
 mount --bind /data/plex/metadata /var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Metadata
 mount --bind /data/plex/sync /var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/Transcode/Sync
 
-PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR=/var/lib/plexmediaserver/Library/Application\ Support
-PLEX_MEDIA_SERVER_HOME=/usr/lib/plexmediaserver
-PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=6
-PLEX_MEDIA_SERVER_TMPDIR=/tmp
-LD_LIBRARY_PATH=/usr/lib/plexmediaserver
-LC_ALL=en_US.UTF-8
-LANG=en_US.UTF-8
-/usr/bin/test -d "${PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR}" || /bin/mkdir -p "${PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR}"
 
 ## Start up Plex Media Server daemon via supervisord
 /usr/bin/supervisord -n -c /etc/supervisord.conf
