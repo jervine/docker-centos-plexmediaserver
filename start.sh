@@ -22,7 +22,7 @@ fi
 mount --bind /data/plex/media /var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Media
 mount --bind /data/plex/metadata /var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Metadata
 mount --bind /data/plex/sync /var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/Transcode/Sync
-
+ldconfig
 
 ## Start up Plex Media Server daemon via supervisord
 /usr/bin/supervisord -n -c /etc/supervisord.conf
