@@ -19,5 +19,5 @@ RUN chmod 755 /usr/sbin/start.sh
 VOLUME /plex-library
 VOLUME /data
 
-EXPOSE 1900 32400 32410 32412 32469
+EXPOSE 1900 9001 32400 32410 32412 32469
 ENTRYPOINT ["/usr/sbin/start.sh"]
