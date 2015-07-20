@@ -14,7 +14,7 @@ if [ ! -f "${setup}" ]; then
   cp /usr/share/zoneinfo/$TZ /etc/localtime
   yum install -y $PMS_RPM
   yum clean all
-  /usr/bin/test -d "${PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR}" || /bin/mkdir -p "${PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR}"
+  /usr/bin/test -d "/var/lib/plexmediaserver/Library/Application Support" || /bin/mkdir -p "/var/lib/plexmediaserver/Library/Application Support"
   chown -R plex:plex /var/lib/plexmediaserver
   touch $setup
 fi
