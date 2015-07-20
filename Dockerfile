@@ -17,6 +17,8 @@ ADD pms.conf /etc/ld.so.conf.d/pms.conf
 ADD start_pms.sh /usr/sbin/start_pms.sh
 RUN chmod 755 /usr/sbin/start.sh
 
+ENV LD_LIBRARY_PATH=/var/lib/plexmediaserver
+
 VOLUME /plex-library
 VOLUME /data
 
