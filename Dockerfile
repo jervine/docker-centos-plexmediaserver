@@ -13,8 +13,6 @@ RUN yum clean all
 ADD supervisord.conf /etc/supervisord.conf
 ADD plexmediaserver.ini /etc/supervisord.d/plexmediaserver.ini
 ADD start.sh /usr/sbin/start.sh
-ADD pms.conf /etc/ld.so.conf.d/pms.conf
-ADD start_pms.sh /usr/sbin/start_pms.sh
 RUN chmod 755 /usr/sbin/start.sh
 
 VOLUME /plex-library
