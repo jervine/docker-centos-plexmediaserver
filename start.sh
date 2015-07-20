@@ -7,12 +7,12 @@
 # Set the correct timezone
 TZ=${TZ:-UTC}
 setup=/config/plexmediaserver/.setup
-PMS-RPM=$PMS-RPM
+PMS_RPM=$PMS_RPM
 
 if [ ! -f "${setup}" ]; then
   rm -f /etc/localtime
   cp /usr/share/zoneinfo/$TZ /etc/localtime
-  yum install -y $PMS-RPM
+  yum install -y $PMS_RPM
   yum clean all
   touch $setup
 fi
