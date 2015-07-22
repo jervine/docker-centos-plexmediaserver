@@ -14,10 +14,14 @@ if [ ! -f "${setup}" ]; then
   cp /usr/share/zoneinfo/$TZ /etc/localtime
   yum install -y $PMS_RPM
   yum clean all
-  /usr/bin/test -d "/var/lib/plexmediaserver/Library/Application Support" || /bin/mkdir -p "/var/lib/plexmediaserver/Library/Application Support"
-  chown -R plex:plex /var/lib/plexmediaserver
   touch $setup
 fi
+
+/usr/bin/test -d "/var/lib/plexmediaserver/Library/Application Support" || /bin/mkdir -p "/var/lib/plexmediaserver/Library/Application Support"
+/usr/bin/test -d "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Media" || /bin/mkdir -p "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Media"
+/usr/bin/test -d "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Metadata" || /bin/mkdir -p "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Metadata"
+/usr/bin/test -d "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/Transcode/Sync" || /bin/mkdir -p "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/Transcode/Sync"
+chown -R plex:plex /var/lib/plexmediaserver
 
 mount --bind /data/plex/media /var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Media
 mount --bind /data/plex/metadata /var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Metadata
