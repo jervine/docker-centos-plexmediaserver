@@ -17,16 +17,11 @@ if [ ! -f "${setup}" ]; then
   touch $setup
 fi
 
-/usr/bin/test -d "/var/lib/plexmediaserver/Library/Application Support" || /bin/mkdir -p "/var/lib/plexmediaserver/Library/Application Support"
-/usr/bin/test -d "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Media" || /bin/mkdir -p "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Media"
-/usr/bin/test -d "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Metadata" || /bin/mkdir -p "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Metadata"
-/usr/bin/test -d "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/Transcode/Sync" || /bin/mkdir -p "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/Transcode/Sync"
+/usr/bin/test -d "/var/lib/plexmediaserver" || /bin/mkdir -p "/var/lib/plexmediaserver"
 chown -R plex:plex /var/lib/plexmediaserver
 
-# Bind mount the volumes that contain a lot of data
-mount --bind /data/plex/media /var/lib/plexmediaserver/Library/Application Support/Plex\ Media\ Server/Media
-mount --bind /data/plex/metadata /var/lib/plexmediaserver/Library/Application Support/Plex\ Media\ Server/Metadata
-mount --bind /data/plex/sync /var/lib/plexmediaserver/Library/Application Support/Plex\ Media\ Server/Cache/Transcode/Sync
+# Bind mount the Plex Media Server var volume that can contain a lot of data
+mount --bind /data/plex /var/lib/plexmediaserver
 
 ## Start up Plex Media Server daemon via supervisord
 /usr/bin/supervisord -n -c /etc/supervisord.conf
