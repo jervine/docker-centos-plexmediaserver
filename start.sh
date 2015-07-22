@@ -23,6 +23,7 @@ fi
 /usr/bin/test -d "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/Transcode/Sync" || /bin/mkdir -p "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/Transcode/Sync"
 chown -R plex:plex /var/lib/plexmediaserver
 
+# Bind mount the volumes that contain a lot of data
 mount --bind /data/plex/media /var/lib/plexmediaserver/Library/Application Support/Plex\ Media\ Server/Media
 mount --bind /data/plex/metadata /var/lib/plexmediaserver/Library/Application Support/Plex\ Media\ Server/Metadata
 mount --bind /data/plex/sync /var/lib/plexmediaserver/Library/Application Support/Plex\ Media\ Server/Cache/Transcode/Sync
